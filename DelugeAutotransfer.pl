@@ -73,7 +73,7 @@ for my $users (sort keys %{$connections}) {
 				my $location	=	$_->{$match_name}->{location};
 				$match_name 	=~	tr/_/ /;
 				$users			=~	tr/_/ /;
-				if ( $torrent_name =~ m/$snatch/i ) {
+				if ( $torrent_path =~ m/$snatch/i ) {
 					my $email_subject = "Torrent Transferred ($match_name)";
 					my $email_content = "Hello $users.\n$torrent_name has been successfully transferred to you.";
 					if ($location) { $destination = $destination."/$location/"; }
