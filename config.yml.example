@@ -1,32 +1,49 @@
 general:
 
   logfile:                              'yourlogfile.log'
+  
+  from:                                 'email_seedbox@domain.tld'
+  smtp:                                 'smtp.server.mail'
+  pass:                                 'xxxxxxx'
+  name:                                 'Name User To Display In the Mail'
+
 
 connections:
 
-  Your_Name:
+  NAS:
     email:                              'youremail@domain.tld'
-    method:				'ftp'
-    port:				'21'
-    login:                              'ftpusername'
-    password:				'ftppassword'
-    host:                               'hostname'
-    destination:                        '/home/username'
-    transfer:
-      - Something_You_Want:
-          match: '^Something\.You\.Want\..*'
-          location: 'SUBDIRECTORY'
-      - Something_Else:
-          match: '^Something\.Else\..*'
-
-  Your_Friend:
-    email:                              'hisemail@domain.tld'
     method:				'rsync'
     port:				'22'
+    login:                              'ftpusername'
+    password:				'ftppassword'
+    host:                               'hostname_du_nas'
+    destination:                        '/volume1'
+    transfer:
+      - Sickrage:
+          match: '/your_client_path_for_sickrage_dl/'
+          location: 'Series/Auto'
+      - CouchPotato:
+          match: '/your_client_path_for_couchpotato_dl/'
+          location: 'Series/Auto'
+      - Default:
+          match: '/your_client_path_for_default_dl/'
+          location: 'Download/SeedBox'
+
+  PC_Father:
+    email:                              'hisemail@domain.tld'
+    method:				'ftp'
+    port:				'21'
     password:				''
     login:                              'hisuser'
-    host:                               'hishost'
-    destination:                        '/home/hisuser'
+    host:                               'hostname_du_pc_father'
+    destination:                        '/media'
     transfer:
-      - He_Wants_This:
-          match: '^He\.Wants\.This\.*'
+      - Sickrage:
+          match: '/your_client_path_for_father_sickrage_dl/'
+          location: 'Series/Auto'
+      - CouchPotato:
+          match: '/your_client_path_for_father_couchpotato_dl/'
+          location: 'Series/Auto'
+      - Default:
+          match: '/your_client_path_for_father_default_dl/'
+          location: 'Download/SeedBox'
